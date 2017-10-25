@@ -404,7 +404,7 @@ function ghostWriter() {
 }
 
 function writeMessage(message) {
-  var message = "ABC";
+  var message = "RUN";
 
   for (var i = 0; i<message.length; i++) {
     data = {};
