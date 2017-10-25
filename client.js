@@ -395,9 +395,7 @@ function redFlash(){
       pixelData[i] = lights[i].getColour();
     }
     light.update();
-    if(light.changed) {
-      lightsChanged = true;
-    }
+    lightsChanged = true;
   }
 }
 
