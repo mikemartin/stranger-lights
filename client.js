@@ -149,6 +149,7 @@ function update() {
 	} else {
 
     //slowFlicker();
+    //ghostWriter();
     redFlash();
 
 		if(lightsChanged) {
@@ -396,6 +397,38 @@ function redFlash(){
     light.update();
     if(light.changed) {
       lightsChanged = true;
+    }
+  }
+}
+
+function ghostWriter() {
+  setInterval(writeMessage,5000);
+}
+
+function writeMessage(message) {
+  var message = "ABC";
+
+  for (var i = 0; i<message.length; i++) {
+    data = {};
+    data.letter = message.charAt(i);
+    data.time = Date.now();
+
+    if(dimmed) {
+      lightLetter(data,'on');
+      lightLetter(data,'off');
+    }
+  }
+}
+
+function lightLetter(data,type) {
+  if((type =='on') || (type =='off')) {
+    if(lightIndex.hasOwnProperty(data.letter)) {
+      var pixelnum = lightIndex[data.letter];
+      if(type=='on') {
+        lights[pixelnum].turnLightOn();
+      } else {
+        lights[pixelnum].turnLightOff();
+      }
     }
   }
 }
